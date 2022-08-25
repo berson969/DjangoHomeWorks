@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Время</title>
+</head>
+<body>
+    <h2> Текущее время </h2>
+        <h1>
+            <a style="color:blue;">{{ time }}</a>
+        </h1>
+             <script>
+                setInterval(function () {
+                    var now = new Date();
+                    var clock = document.getElementById("clock");
+                clock.innerHTML = now.toLocaleTimeString();
+                }, 1000);
+             </script>
+        <h2>
+        <span id="clock" style="color:red;"></span>
+        </h2>
+</body>
+</html>

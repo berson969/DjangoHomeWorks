@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Текущая директория</title>
+</head>
+<body>
+   <h1>Рабочая директория</h1>
+    {% for title, url in pages.items %}
+        {% if '.' in title %}
+            <a> {{ title }}</a>
+            <br>
+        {% else %}
+            <a href="{{ url }}">{{ title }}</a>
+            <br>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
