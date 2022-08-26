@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+</head>
+<body>
+    <h2>Choose the dish</h2>
+    <dl style="color:blue; font-size: 20px">
+        {% for name_dish in recipes %}
+        <dd>
+            <a href="{% url 'index' name_dish %}">{{ name_dish.upper }}</a>
+        </dd>
+        {% endfor %}
+    </dl>
+</body>
+</html>
