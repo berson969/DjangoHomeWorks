@@ -17,9 +17,9 @@
       <a class="sort-item" href="?sort=max_price">начиная с дорогих</a>
     </div>
 
-    <div class="content">
+    <div class="row">
       {% for phone in phones %}
-        <div class="phone">
+        <div class="col-4">
           <a href="{% url 'phone' phone.slug %}">
             <h3>{{ phone.name }}</h3>
           </a>
