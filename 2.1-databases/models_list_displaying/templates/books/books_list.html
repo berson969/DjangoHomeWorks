@@ -8,16 +8,18 @@
             <h1><a href="/books">Каталог</a></h1>
         </div>
         <div class="row">
+            {% for book in books %}
             <div class="book col-md-4">
-                <h2>Сияние</h2>
-                <p>Автор: Стивен Кинг</p>
-                <p>Дата публикации: 2018-09-10</p>
+                <h2><a href="/books/{{ book.pub_date_str }}"><img height="400" src="{{ book.image }}" alt={{ book.name }}><br>{{ book.name }}</a></h2>
+                <br>
+                <p>Автор: {{ book.author }}</p>
+                <p>Дата публикации: {{ book.pub_date }}<br><br></p>
+                <br>
             </div>
-            <div class="book col-md-4">
-                <h2>1984</h2>
-                <p>Автор: Джордж Оруэл</p>
-                <p>Дата публикации: 2015-03-11</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
+                <div>
+                    <p><a href="/admin">>>> to admin</a></p>
+                </div>
 {% endblock %}

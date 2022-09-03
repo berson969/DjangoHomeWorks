@@ -4,8 +4,9 @@
     "pk": 1,
     "fields": {
       "name": "Война и мир",
-      "author": "Ф.Д. Достоевский",
-      "pub_date": "2018-02-27"
+      "author": "Л. Н. Толстой",
+      "pub_date": "2018-02-27",
+      "image": "https://s4.knigavuhe.org/2/covers/5301/2-2.jpg?2"
     }
   },
   {
@@ -13,8 +14,70 @@
     "pk": 2,
     "fields": {
       "name": "1984",
-      "author": "Джордж Оруэл",
-      "pub_date": "2016-12-06"
+      "author": "Джордж Оруэлл",
+      "pub_date": "2016-12-06",
+      "image": "https://s1.livelib.ru/boocover/1003634811/200x305/d070/1984.jpg"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "name": "Скотный двор",
+      "author": "Джордж Оруэлл",
+      "pub_date": "2016-12-06",
+      "image": "https://www.orwell.ru/library/books/img_file/010_l0.jpg"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+      "name": "Глотнуть воздуха",
+      "author": "Джордж Оруэлл",
+      "pub_date": "2016-12-01",
+      "image": "https://s1.livelib.ru/boocover/1000597549/o/9e56/Dzhordzh_Oruell__Glotnut_vozduha.jpeg"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 5,
+    "fields": {
+      "name": "Да здравствует фикус!",
+      "author": "Джордж Оруэлл",
+      "pub_date": "2016-12-06",
+      "image": "https://m.media-amazon.com/images/I/61qr3HXqAFL.jpg"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 6,
+    "fields": {
+      "name": "Долина Страха",
+      "author": "Артур Конан Дойль",
+      "pub_date": "2016-12-03",
+      "image": "https://booqua.de/images/product_gallery/1611741231_9e429bca3f2a51c03a68057a24394e13.jpg"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 7,
+    "fields": {
+      "name": "Приключения Шерлока Хомса",
+      "author": "Артур Конан Дойль",
+      "pub_date": "2016-12-03",
+      "image": "https://cdn.eksmo.ru/v2/ITD000000000297994/COVER/cover1__w220.jpg"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 8,
+    "fields": {
+      "name": "Убийца, Мой приятель",
+      "author": "Артур Конан Дойль",
+      "pub_date": "2016-12-02",
+      "image": "https://i.ebayimg.com/images/g/Pv8AAOSwqMBevywe/s-l500.png"
     }
   }
+
 ]
