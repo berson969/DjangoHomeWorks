@@ -19,7 +19,7 @@ class Article(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=30)
 
-    # articles = models.ManyToManyField(Article, related_name='tages')
+    # articles = models.ManyToManyField(Article, related_name='tages', through='Scope')
 
     class Meta:
         verbose_name = 'Тег'
@@ -42,5 +42,3 @@ class Scope(models.Model):
 
     def __str__(self):
         return f"{self.article}_{self.tag}"
-
-# ValueError: Cannot alter field articles.Tag.articles into articles.Tag.articles - they are not compatible types (you cannot alter to or from M2M fields, or add or remove through= on M2M fields)
