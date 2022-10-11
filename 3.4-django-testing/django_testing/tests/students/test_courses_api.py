@@ -46,27 +46,29 @@ def test_list_courses(client, course_factory):
     assert len(response.data) == 10
 
 
+# проверка фильтрации курсов по id
 @pytest.mark.django_db
 def test_filter_id_course(client, course_factory):
     courses = course_factory(_quantity=10)
     queryset = Course.objects.filter(id=courses[5].id)
-    response = client.get(f"{URL}{queryset[0].id}/")
+    response = client.get(f"{URL}?id={queryset[0].id}")
     assert response.status_code == 200
-    assert response.data['name'] == courses[5].name
+    assert response.data[0]['name'] == courses[5].name
 
 
+# проверка фильтрации курсов по name
 @pytest.mark.django_db
 def test_filter_name_course(client, course_factory):
     courses = course_factory(_quantity=10)
     queryset = Course.objects.filter(name=courses[3].name)
-    response = client.get(f"{URL}{queryset[0].id}/")
+    response = client.get(f"{URL}?name={queryset[0].name}")
     assert response.status_code == 200
-    assert response.data['name'] == courses[3].name
+    assert response.data[0]['name'] == courses[3].name
 
 
 @pytest.mark.django_db
 def test_create_course(client):
-    data = {'name': 'Test'}
+    data = {'name': 'Test', 'students': []}
     response = client.post(URL, data)
     assert response.status_code == 201
     assert response.data['name'] == data['name']
@@ -75,7 +77,7 @@ def test_create_course(client):
 @pytest.mark.django_db
 def test_update_course(client, course_factory):
     course = course_factory()
-    data = {'name': 'Test'}
+    data = {'name': 'Test','students': []}
     response = client.patch(f"{URL}{course.id}/", data)
     assert response.status_code == 200
     assert response.data['name'] == data['name']

@@ -24,11 +24,10 @@ class AdvertisementViewSet(ModelViewSet):
         return []
 
     def get_queryset(self, *args, **kwargs):
-        if self.request.user. is_staff:
+        if self.request.user.is_staff:
             return Advertisement.objects.all()
-        elif self.request.user.is_annoymous:
+        elif self.request.user.is_anonymous:
             return Advertisement.objects.exclude(status='DRAFT')
-        else:
-            return Advertisement.objects.filter(Q(creator=self.request.user) | ~Q(status='DRAFT'))
+        return Advertisement.objects.filter(Q(creator=self.request.user) | ~Q(status='DRAFT'))
 
 
