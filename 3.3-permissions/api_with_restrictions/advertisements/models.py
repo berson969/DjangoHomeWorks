@@ -32,13 +32,18 @@ class Advertisement(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )
-    favorite = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='favorites',
-        null=True,
-        # limit_choices_to={'favorites': creator }
-    )
 
     def __str__(self):
         return f'{self.title} // {self.description}'
+
+
+class FavoriteAdvertisement(models.Model):
+    favorite = models.ForeignKey(
+        Advertisement,
+        on_delete=models.CASCADE,
+        related_name='favorites',
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )

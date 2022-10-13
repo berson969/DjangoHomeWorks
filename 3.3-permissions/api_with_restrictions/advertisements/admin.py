@@ -1,9 +1,13 @@
 from django.contrib import admin
 
-from .models import Advertisement
+from .models import Advertisement, FavoriteAdvertisement
 
 
-# Register your models here.
 @admin.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ['id', 'status', 'creator', 'favorite', 'created_at', 'updated_at']
+    list_display = ['id', 'status', 'creator', 'created_at', 'updated_at']
+
+
+@admin.register(FavoriteAdvertisement)
+class FavoriteAdvertisementAdmin(admin.ModelAdmin):
+    list_display = ['favorite', 'user']

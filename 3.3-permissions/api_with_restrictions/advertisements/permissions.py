@@ -2,7 +2,7 @@ from django.conf import settings
 from rest_framework import permissions
 
 
-class IsOwnerOrReadOnly(permissions.BasePermission):
+class IsOwnerOrIsStaffOrReadOnly(permissions.BasePermission):
     """
     Object-level permission to only allow owners of an object to edit it.
     Assumes the model instance has an `owner` attribute.
@@ -16,9 +16,3 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Instance must have an attribute named `owner`.
         return obj.creator == request.user
-
-
-# class IsNotOwnerFavorite(permissions.BasePermission):
-#     """
-#     Permission If you advertisements owner you cant
-#     """

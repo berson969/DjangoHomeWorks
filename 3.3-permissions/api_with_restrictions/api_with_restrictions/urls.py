@@ -24,7 +24,6 @@ router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
 router.register('advertisements', AdvertisementViewSet)
 
-
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from .models import Advertisement
+from .models import Advertisement, FavoriteAdvertisement
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -23,7 +23,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
         fields = ('id', 'title', 'description', 'creator',
-                  'status', 'created_at', 'favorite',)
+                  'status', 'created_at',)
 
     def create(self, validated_data):
         """Метод для создания"""
@@ -44,3 +44,24 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         if len(queryset) >= 10 and data['status'] == 'OPEN':
             raise ValidationError("Exceeded max number of opening advertisements")
         return data
+
+
+class FavoriteAdvertisementSerializer(serializers.ModelSerializer):
+    favorite = AdvertisementSerializer(
+        read_only=True,
+    )
+
+    class Meta:
+        model = FavoriteAdvertisement
+        fields = ['favorite', 'user']
+
+    def create(self, validated_data):
+        return super().create(validated_data)
+
+    def validate(self, data):
+        if FavoriteAdvertisement.objects.filter(user=data['user'], favorite=data['favorite']):
+            raise ValidationError('The Advertisement already is favorite')
+        if Advertisement.objects.get(id=data['favorite'].id).creator == data['user']:
+            raise ValidationError("There is owner's advertisement")
+        return data
+
