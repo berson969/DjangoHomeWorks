@@ -87,7 +87,8 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'user': '20/minute',
         'anon': '10/minute',
-    }
+    },
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 WSGI_APPLICATION = 'api_with_restrictions.wsgi.application'
 

@@ -40,20 +40,26 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
 
-        queryset = Advertisement.objects.filter(creator=self.context["request"].user, status='OPEN')
-        if len(queryset) >= 10 and data['status'] == 'OPEN':
+        count = Advertisement.objects.filter(creator=self.context["request"].user, status='OPEN').count()
+        if count >= 10 and (data.get('status') == 'OPEN' or self.context["request"].method == 'POST'):
             raise ValidationError("Exceeded max number of opening advertisements")
         return data
 
 
 class FavoriteAdvertisementSerializer(serializers.ModelSerializer):
     favorite = AdvertisementSerializer(
-        read_only=True,
+        read_only=False,
     )
 
     class Meta:
         model = FavoriteAdvertisement
+        # depth = 1
         fields = ['favorite', 'user']
+
+    # def to_representation(self, instance):
+    #     data = super().to_representation(instance)
+    #     # data.update(...)
+    #     return data
 
     def create(self, validated_data):
         return super().create(validated_data)
@@ -61,7 +67,6 @@ class FavoriteAdvertisementSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if FavoriteAdvertisement.objects.filter(user=data['user'], favorite=data['favorite']):
             raise ValidationError('The Advertisement already is favorite')
-        if Advertisement.objects.get(id=data['favorite'].id).creator == data['user']:
+        if data['favorite'].creator == data['user']:
             raise ValidationError("There is owner's advertisement")
         return data
-
